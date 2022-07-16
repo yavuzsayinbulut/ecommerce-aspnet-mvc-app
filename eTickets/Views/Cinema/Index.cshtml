@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Cinema>
+
+@{
+	ViewData["Title"] = "List of Cinemas";
+}
+
+
+
+<div class="row">
+	<div class="col-md-8 offset-md-2">
+		<table class="table">
+			<thead>
+				<tr>
+				<th>@Html.DisplayNameFor(m=>m.cinemaLogo)</th>
+				<th>@Html.DisplayNameFor(m=>m.name)</th>
+				<th>@Html.DisplayNameFor(m=>m.description)</th>
+					<th> Actions </th>
+				</tr>
+			</thead>
+			<tbody>
+			  @foreach (var item in Model)
+			 {
+				 <tr>
+					 <td>
+						 <img src="@Html.DisplayFor(m=>item.cinemaLogo)" alt="@Html.DisplayFor(m=>item.name)" style=" max-width:150px"> </img>
+					</td>
+					<td>@Html.DisplayFor(m=>item.name)</td>
+					<td>@Html.DisplayFor(m=>item.description)</td>
+					<td>
+						<a class="btn btn-outline-primary"> <i class="bi bi-pencil-square"></i> Edit</a>
+							<a class="btn btn-outline-info"><i class="bi bi-eye"></i>Details</a>
+						<a class="btn btn-outline-danger "><i class="bi bi-trash"></i>Delete</a>
+						
+					</td>
+				 </tr>
+			 }
+			</tbody>
+		</table>
+	</div>
+</div>
