@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using eTickets.Data.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace eTickets.Models
 {
-    public class Producer
+    public class Producer:IEntityBase  //producerserviceden gelip Entity Interface base i import ettik
     {
         [System.ComponentModel.DataAnnotations.Key]
-        public int producerID { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Profile Photo")]     
         public string profilePictureURL { get; set; }
@@ -18,5 +19,5 @@ namespace eTickets.Models
         //relationship
 
         public List<Movie> Movies { get; set; }
-    }
+     }
 }

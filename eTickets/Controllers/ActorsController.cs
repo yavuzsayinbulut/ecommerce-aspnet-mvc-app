@@ -21,7 +21,8 @@ namespace eTickets.Controllers
         public async Task<IActionResult>  Index()
         {
 
-            var data = await _service.GetAll();
+            var data = await _service.GetAllAsync();
+
 
 
 
@@ -29,7 +30,7 @@ namespace eTickets.Controllers
         }
 
         //get: actors/create
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -43,7 +44,7 @@ namespace eTickets.Controllers
             {
                 return View(actor);
             }
-            _service.Add(actor);
+            await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
         }
 
@@ -51,11 +52,62 @@ namespace eTickets.Controllers
 
         public async Task <IActionResult> Details(int id)
         {
-            var actorDetails = _service.Get(id);
+            var actorDetails = await _service.GetByIdAsync(id);
+
             if (actorDetails == null) return View("Empty");
             
             else return View(actorDetails);
         }
 
+        //get: actors/Edit
+        public async Task <IActionResult> Edit(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+
+            if (actorDetails == null) return View("NotFound");
+            return View(actorDetails);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,profilePictureURL,fullName,biography")] Actor actor)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {
+          
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+          
+            await _service.UpdateAsync(id, actor);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+
+
+        //get: actors/Delete
+        public async Task<IActionResult> Delete(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+
+            if (actorDetails == null) return View("NotFound");
+            return View(actorDetails);
+        }
+
+
+        [HttpPost,ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+
+            if (actorDetails == null) return View("NotFound");
+
+            await _service.DeleteAsync(id);
+
+           
+          
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

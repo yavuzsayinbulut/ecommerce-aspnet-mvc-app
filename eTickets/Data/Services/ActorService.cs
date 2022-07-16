@@ -1,4 +1,5 @@
-﻿using eTickets.Models;
+﻿using eTickets.Data.Base;
+using eTickets.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,41 +7,48 @@ using System.Threading.Tasks;
 
 namespace eTickets.Data.Services
 {
-    public class ActorService : IActorService
+    public class ActorService :EntityBaseRepository<Actor>, IActorService
     {
-        private readonly dbContextFile _context;
+      
 
-        public ActorService(dbContextFile context)
+        public ActorService(dbContextFile context):base(context)
         {
-            _context = context;
-        }
-
-        public object Actors => throw new System.NotImplementedException();
-
-        public void Add(Actor actor)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Actor Get(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public  async Task<IEnumerable<Actor>> GetAll()
-        {
-            var result = await  _context.Actors.ToListAsync();
-            return result;
-        }
-
-        public Actor Update(int id, Actor newActor)
-        {
-            throw new System.NotImplementedException();
+           
         }
     }
 }
+
+
+
+/*  private readonly dbContextFile _context;
+
+       public ActorService(dbContextFile context)
+       {
+           _context = context;
+       }
+
+       public object Actors => throw new System.NotImplementedException();
+
+       public async Task AddAsync(Actor actor)
+       {
+           await _context.Actors.AddAsync(actor);
+         await  _context.SaveChangesAsync();
+       }
+
+       public async Task DeleteAsync(int id)
+       {
+                                            var result = await _context.Actors.FirstOrDefaultAsync(n => n.actorID == id);
+            _context.Actors.Remove(result);
+           await _context.SaveChangesAsync();
+       }
+
+
+
+
+
+       public async Task< Actor> UpdateAsync(int id, Actor newActor)
+       {
+           _context.Update(newActor);
+           await _context.SaveChangesAsync();
+           return newActor;
+       }*/

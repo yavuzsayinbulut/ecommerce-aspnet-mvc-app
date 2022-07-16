@@ -6,7 +6,7 @@ namespace eTickets.Models
     {
         [System.ComponentModel.DataAnnotations.Key]
 
-        public int cinemaID { get; set; }
+        public int Id { get; set; }
         public string cinemaLogo { get; set; }
         public string name { get; set; }
         public string description { get; set; }

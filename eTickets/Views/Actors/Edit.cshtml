@@ -1,19 +1,19 @@
 ﻿@model Actor
 @{
-	ViewData["Title"]= "Add a new actor";
+	ViewData["Title"]= "Update actor";
 }
 
 <div class="row text">
 	<div class=" coll-md-8 offset-2">
 		<p>
-			<h1>Add New Actor</h1>
+			<h1>Update Actor</h1>
 		</p>
 		<div class="row">
 			<div class=" coll-md-8 offset-2">
-				<form asp-action="Create">
+				<form asp-action="Edit">
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 					<div class="form-group text-center">
-						<img id="profilepicpre" class="border-info rounded-circle" style="max-width=150px"/>
+						<img id="profilepicpre" class="border-info rounded-circle" style="max-width:150px"/>
 				</div>
 				<div class="form-group">
 					<label asp-for="profilePictureURL" class="control-label"></label>
@@ -33,9 +33,15 @@
 					<span asp-validation-for="biography" class="text-danger"></span>
 
 				</div>
+					<div class="form-group" >
+					<label asp-for="Id" class="control-label"></label>
+					<input asp-for="Id" class="form-control" readonly/>
+					<span asp-validation-for="Id" class="text-danger"></span>
 
+				</div>
+			
 				<div class="form-group">
-					<input type="submit" value="Create" class="btn btn-outline-success float-right"/>
+					<input type="submit" value="Update" class="btn btn-outline-success float-right"/>
 					<a class="btn btn-outline-secondary" asp-action="Index" > Show All</a>	
 				</div>
 				</form>

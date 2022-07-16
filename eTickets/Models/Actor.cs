@@ -1,17 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using eTickets.Data.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace eTickets.Models
 {
-    public class Actor
+
+    public class Actor: IEntityBase
     {
 
         [Key]
+        public int Id { get; set; }
 
-        public int actorID { get; set; }
- 
 
-        
+
+
         [Display(Name ="Profile Picture Url")]
         [Required(ErrorMessage ="Pp is required")]
         public string profilePictureURL { get; set; }
@@ -28,6 +30,5 @@ namespace eTickets.Models
         //releationship
 
         public List <ActorMovies_IntersactionEntity> Actors_Movies { get; set; }
-            
-    }
+        }
 }
