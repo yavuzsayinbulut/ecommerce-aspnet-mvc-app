@@ -28,7 +28,9 @@ namespace eTickets
         {
             //Services config
             services.AddScoped<IActorService, ActorService>();
-
+            services.AddScoped<IProducerService,ProducerService>();
+            services.AddScoped<ICinemasService,CinemasService>();
+            services.AddScoped<IMoviesService,MovieService>();
 
             //dbcontext config
 

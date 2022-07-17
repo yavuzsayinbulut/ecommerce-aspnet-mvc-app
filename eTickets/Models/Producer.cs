@@ -9,11 +9,14 @@ namespace eTickets.Models
         [System.ComponentModel.DataAnnotations.Key]
         public int Id { get; set; }
 
-        [Display(Name = "Profile Photo")]     
+        [Display(Name = "Profile Photo")]
+        [Required(ErrorMessage = "Pp is required")]
         public string profilePictureURL { get; set; }
         [Display(Name = " Full Name")]
+        [Required(ErrorMessage = "name is required")]
         public string fullName { get; set; }
         [Display(Name = " Biography")]
+        [Required(ErrorMessage = "bio is required")]
         public string biography { get; set; }
 
         //relationship
